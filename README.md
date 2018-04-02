@@ -37,7 +37,7 @@ Ensure that you go through [IBM Cloud App Launch service documentation](https://
 - [Destroy](#destroy)
 - [Samples and videos](#samples-and-videos)
 
-##Setup App Launch Service
+## Setup App Launch Service
 
 ### Creating the service
 ![Create feature](https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-android-applaunch/blob/development/Images/create_service.gif)
@@ -57,7 +57,7 @@ Ensure that you go through [IBM Cloud App Launch service documentation](https://
 
 ## Installation
 
-This section describes how to install and use the client JavaScript App Launch SDK to further develop your Web applications.
+This section describes how to install and use the App Launch SDK for JavaScript client and to further develop your Web applications.
 
 The Web SDKs for IBM Cloud Mobile services is available via [JitPack](https://jitpack.io).
 
@@ -83,7 +83,7 @@ To install App Launch Web SDK using jitpack
     Code to be put here 
 	
     ```
-3. Add the following permissions inside application's `AndroidManifest.xml` file. **Should it be `Web.xml`.
+3. Add the following permissions inside application's `AndroidManifest.xml` file. **Should it be `Web.xml`. **
 
      ```
      <uses-permission android:name="android.permission.INTERNET"/>
