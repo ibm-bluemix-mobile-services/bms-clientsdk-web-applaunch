@@ -8,7 +8,7 @@ This Web SDK for App Launch on IBM Cloud services, provides a library for develo
 
 >App Launch on IBM Cloud services enables the developers to build engaging apps by controlling reach and roll out of App features while measuring the defined metrics.
 
-Ensure that you go through [IBM Cloud App Launch service documentation](https://console-regional.ng.bluemix.net/docs/services/app-launch/index.html) before you start.
+Ensure that you go through [IBM Cloud App Launch service documentation](https://console.bluemix.net/docs/services/app-launch/index.html) before you start.
 
 ## Build Status
 
@@ -38,6 +38,7 @@ Ensure that you go through [IBM Cloud App Launch service documentation](https://
 - [Samples and videos](#samples-and-videos)
 
 ##Setup App Launch Service
+
 ### Creating the service
 ![Create feature](https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-android-applaunch/blob/development/Images/create_service.gif)
 ### Creating a feature
@@ -49,22 +50,24 @@ Ensure that you go through [IBM Cloud App Launch service documentation](https://
 
 ## Prerequisites
 
- * Android API level 14 or later
- * Android 4.0 or later
- * [Android Studio](https://developer.android.com/studio/index.html)
- * [Gradle](https://gradle.org/install)
- * [Android HelloAppLaunch sample app](https://github.com/ibm-bluemix-mobile-services/bms-samples-android-helloapplaunch)
- * [BMSCore](https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-android-core) SDKs installed by using 
-  either Android Studio or Gradle
+ * Safari, Chrome or Firefox web browser
+ * [Sample App](https://developer.android.com/studio/index.html)
+
+
 
 ## Installation
-The Android SDKs for IBM Cloud Mobile services is available via [JitPack](https://jitpack.io).
+
+This section describes how to install and use the client JavaScript App Launch SDK to further develop your Web applications.
+
+The Web SDKs for IBM Cloud Mobile services is available via [JitPack](https://jitpack.io).
 
 ### JitPack
 
-To install Applaunch Android SDK using jitpack
+To install App Launch Web SDK using jitpack
 
 1. In the projects `build.gradle` file include:
+   **Is this step required**
+
 	```
 	allprojects {
 	    repositories {
@@ -74,27 +77,23 @@ To install Applaunch Android SDK using jitpack
 	}
 	```
 
-2. Add Bluemix App Launch Android SDK dependency and BMS Core dependency to your app module `build.gradle` file.
+2. Add IBM Cloud App Launch Web SDK dependency and BMS Core dependency to your app module `build.gradle` file.
     
     ```
-    dependencies {
-        ........
-        compile 'com.github.ibm-bluemix-mobile-services:bms-clientsdk-android-applaunch:0.0.5'
-        compile 'com.ibm.mobilefirstplatform.clientsdk.android:core:[2.0.0,3.0.0)'
-        .......
-    }
+    Code to be put here 
+	
     ```
-3. Add the following permissions inside application's `AndroidManifest.xml` file. 
+3. Add the following permissions inside application's `AndroidManifest.xml` file. **Should it be `Web.xml`.
 
      ```
      <uses-permission android:name="android.permission.INTERNET"/>
      <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
      ```   
     
-## Enabling Android applications to use IBM App Launch
+## Enabling Web applications to use IBM App Launch
 
 ### Initializing the AppLaunch SDK
-A common place to put the initialization code is the`onCreate()` method of your Android application: 
+A common place to put the initialization code is the`onCreate()` method of your Android application:  **change Required**
 
 ##### 1. Build Configuration Object
 ```
