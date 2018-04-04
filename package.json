@@ -4,6 +4,7 @@
   "description": "This Web SDK for App Launch on IBM Cloud services, provides a library for developers to build web applications.",
   "main": "icapplaunch.js",
   "scripts": {
+    "lint": "./node_modules/.bin/eslint **/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
