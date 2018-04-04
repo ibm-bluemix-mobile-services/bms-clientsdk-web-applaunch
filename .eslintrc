@@ -1,0 +1,18 @@
+{
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        // Override our default settings just for this directory
+        "eqeqeq": "error",
+        "strict": "error"
+    }
+}
