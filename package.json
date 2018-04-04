@@ -1,0 +1,27 @@
+{
+  "name": "bms-clientsdk-web-applaunch",
+  "version": "1.0.0",
+  "description": "This Web SDK for App Launch on IBM Cloud services, provides a library for developers to build web applications.",
+  "main": "icapplaunch.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-web-applaunch.git"
+  },
+  "keywords": [
+    "IBM",
+    "IBM",
+    "Cloud",
+    "AppLaunch",
+    "IBM",
+    "AppLaunch"
+  ],
+  "author": "IBM Cloud Mobile Services",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-web-applaunch/issues"
+  },
+  "homepage": "https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-web-applaunch#readme"
+}
