@@ -1,20 +1,11 @@
 IBM Cloud Mobile Service - AppLaunch Web Client SDK
 ==========================================
-[![Build Status](https://travis-ci.org/ibm-bluemix-mobile-services/bms-clientsdk-android-applaunch.svg?branch=master)](https://travis-ci.org/ibm-bluemix-mobile-services/bms-clientsdk-android-applaunch)
-[![JitPack](https://jitpack.io/v/ibm-bluemix-mobile-services/bms-clientsdk-android-applaunch.svg)](https://jitpack.io/#ibm-bluemix-mobile-services/bms-clientsdk-android-applaunch)
-
 
 This Web SDK for App Launch on IBM Cloud services, provides a library for developers to build Web applications.
 
 >App Launch on IBM Cloud services enables the developers to build engaging apps by controlling reach and roll out of App features while measuring the defined metrics.
 
 Ensure that you go through [IBM Cloud App Launch service documentation](https://console.bluemix.net/docs/services/app-launch/index.html) before you start.
-
-## Build Status
-
-| Master | Development |
-|:------:|:-----------:|
-|  [![Build Status](https://travis-ci.org/ibm-bluemix-mobile-services/bms-clientsdk-android-applaunch.svg?branch=master)](https://travis-ci.org/ibm-bluemix-mobile-services/bms-clientsdk-android-applaunch)      |    [![Build Status](https://travis-ci.org/ibm-bluemix-mobile-services/bms-clientsdk-android-applaunch.svg?branch=development)](https://travis-ci.org/ibm-bluemix-mobile-services/bms-clientsdk-android-applaunch)         |
 
 ## Contents
 - [Setup App Launch Service](#setup-app-launch-service)
