@@ -65,11 +65,11 @@ For installing the Javascript SDK in your web applications follow the steps -
 
 - Include the IBM Cloud AppLaunch CSS File in your web application
 
-<link rel="stylesheet" type="text/css" href="icapplaunch-inapp.css">
+  `<link rel="stylesheet" type="text/css" href="icapplaunch-inapp.css">`
 
 - Include IBM Cloud AppLaunch Web SDK to the web application.
 
-<script src="icapplaunch.js" async></script>
+  `<script src="icapplaunch.js" async></script>`
     
 ## Enabling Web applications to use IBM App Launch
 
