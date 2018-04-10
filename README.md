@@ -53,8 +53,6 @@ Ensure that you go through [IBM Cloud App Launch service documentation](https://
  * Safari, Chrome or Firefox web browser
  * [Sample App](https://developer.android.com/studio/index.html)
 
-
-
 ## Installation
 
 This section describes how to install and use the App Launch SDK for JavaScript client and to further develop your Web applications.
@@ -93,11 +91,12 @@ To install App Launch Web SDK using jitpack
 ## Enabling Web applications to use IBM App Launch
 
 ### Initializing the AppLaunch SDK
-A common place to put the initialization code is the`onCreate()` method of your Android application:  **change Required**
+
 
 ##### 1. Build Configuration Object
+
 ```
-AppLaunchConfig appLaunchConfig = new AppLaunchConfig.Builder().eventFlushInterval(10).cacheExpiration(10).fetchPolicy(RefreshPolicy.REFRESH_ON_EVERY_START).deviceId("454dfidif0e-3r3434-3434343").build();
+    var config  = new IBMAppLaunch.AppLaunchConfigBuilder().fetchPolicy(IBMAppLaunch.RefreshPolicy.REFRESH_ON_EVERY_START).cacheExpiration(30).eventFlushInterval(30).deviceID("deviceIdUUid").build();
 ```
 The AppLaunchConfig builder is used to customize the following:
 
@@ -116,18 +115,6 @@ The AppLaunchConfig builder is used to customize the following:
  
   	-`RefreshPolicy.BACKGROUND_REFRESH`
   	
-  	To enable BACKGROUND_REFRESH include the following in the applications AndroidManifest.xml. 
-     <receiver
-            android:name="com.ibm.mobile.applaunch.android.background.AppLaunchAlarmReceiver"
-            android:process=":remote" >
-    </receiver>
-
-        <service
-            android:name="com.ibm.mobile.applaunch.android.background.AppLaunchBackgroundService"
-         android:exported="false"/>
-
-	The default value is `RefreshPolicy.REFRESH_ON_EVERY_START`.
-  	
 - `deviceId`: This parameter must be unique. If not specified, default deviceID generation mechanism is used by SDK.
  
 	**Note**: Do not rely on the default implementation of the deviceID generation  mechanism as it is not guarenteed to be unique.
@@ -135,7 +122,7 @@ The AppLaunchConfig builder is used to customize the following:
 ##### 2. Build User Object
 
 ```
-AppLaunchUser appLaunchUser = new AppLaunchUser.Builder().userId("norton").custom("type","premium").build();
+    var user = new IBMAppLaunch.AppLaunchUserBuilder().userID("vittal").attributes("ds","sd").attributes("taasdsd","sad").build();
 ```
 
 The AppLaunchUser builder is used to provide the following information:
@@ -146,9 +133,16 @@ The AppLaunchUser builder is used to provide the following information:
 
 ##### 3. Initialize App Launch SDK
 
-```
-AppLaunch.getInstance().initialize(getApplication(), "bluemixRegionSuffix","appGUID","clientSecret",appLaunchConfig,appLaunchUser,AppLaunchListener);
-```
+    ```
+    IBMAppLaunch.initialize(IBMAppLaunch.ICRegion.US_SOUTH, "5808c971-3d80-44cf-877a-7865144fa078", "651d6983-0a79-4ebf-8ef8-307be4fef633", config, user).then(
+     function(success) {
+
+        }, function(failure) {
+
+        });
+    
+    ```
+  	{: codeblock}
 
 Where `region` parameter specifies the location where the app is hosted. You can use any of the following values:
 
@@ -164,16 +158,18 @@ The `appGUID` is the app launch app GUID value, while `clientSecret` is the appL
 
 ### Feature toggle
 
-* Use the ```AppLaunch.sharedInstance.isFeatureEnabled(featureCode: "feature code")``` to check if the feature is enabled for the app.
 
-* Use the ```AppLaunch.sharedInstance.getPropertyofFeature(featureCode: "feature code", propertyCode: "property code")``` to get the value of the particular property in a feature.
+
+* Use the ```IBMAppLaunch.isFeatureEnabled("_2eciv47r9");``` to check if the feature is enabled for the app.
+
+* Use the ```IBMAppLaunch.getPropertyofFeature("_2eciv47r9","_br4kiz40c")``` to get the value of the particular property in a feature.
 
 
  **Note** :The above two APIs throws `AppLaunchException` exception if `isFeatureEnabled` or `getPropertyofFeature` is invoked before `init` API.  
 
 ### Metrics
 
-To send metrics to the server use the ```AppLaunch.sharedInstance.sendMetrics()``` API. This API call sends the metrics information to the server.
+To send metrics to the server use the ```IBMAppLaunch.sendMetrics(["_e3dwkpzqc"]);``` API. This API call sends the metrics information to the server.
 
 ```
  AppLaunch.getInstance().sendMetrics(ArrayList<String> metrics);
@@ -186,7 +182,7 @@ To send metrics to the server use the ```AppLaunch.sharedInstance.sendMetrics()`
 To display InApp messages invoke the following api
 
 ```
- AppLaunch.getInstance().displayInAppMessages(context);
+ IBMAppLaunch.displayInAppMessages();
 ```
 
 **Note** : Here the context is the Activities context.
@@ -195,9 +191,19 @@ To display InApp messages invoke the following api
 
 This method unregisters the user from AppLaunch Service and clears the cache
 
-```
-AppLaunch.getInstance().destroy(AppLaunchListener)
-```
+    ```
+    IBMAppLaunch.destroy().then(
+
+    function(success){
+
+       console.log("destroy succes")
+
+    }, function(failure) {
+
+       console.log("destroy fail")
+
+    });
+    ```
 
 ### Samples and Videos
 
