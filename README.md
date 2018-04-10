@@ -57,36 +57,19 @@ Ensure that you go through [IBM Cloud App Launch service documentation](https://
 
 This section describes how to install and use the App Launch SDK for JavaScript client and to further develop your Web applications.
 
-The Web SDKs for IBM Cloud Mobile services is available via [JitPack](https://jitpack.io).
+For installing the Javascript SDK in your web applications follow the steps -
 
-### JitPack
+- Download the icapplaunch.js and icapplaunch-inapp.css from [here](https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-web-applaunch)
 
-To install App Launch Web SDK using jitpack
+- Add the icapplaunch.js and icapplaunch-inapp.css to your web application
 
-1. In the projects `build.gradle` file include:
-   **Is this step required**
+- Include the IBM Cloud AppLaunch CSS File in your web application
 
-	```
-	allprojects {
-	    repositories {
-		jcenter()
-		maven { url 'https://jitpack.io' }
-	    }
-	}
-	```
+<link rel="stylesheet" type="text/css" href="icapplaunch-inapp.css">
 
-2. Add IBM Cloud App Launch Web SDK dependency and BMS Core dependency to your app module `build.gradle` file.
-    
-    ```
-    Code to be put here 
-	
-    ```
-3. Add the following permissions inside application's `AndroidManifest.xml` file. **Should it be `Web.xml`. **
+- Include IBM Cloud AppLaunch Web SDK to the web application.
 
-     ```
-     <uses-permission android:name="android.permission.INTERNET"/>
-     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-     ```   
+<script src="icapplaunch.js" async></script>
     
 ## Enabling Web applications to use IBM App Launch
 
@@ -104,16 +87,16 @@ The AppLaunchConfig builder is used to customize the following:
 
 - `cacheExpiration` : Sets/Decide the time interval until when the actions should be valid for. The default value is 30 minutes. 
 
-	**Note** This parameter is effective only if the fetch policy is set to `RefreshPolicy.REFRESH_ON_EXPIRY` or `RefreshPolicy.BACKGROUND_REFRESH`
+	**Note** This parameter is effective only if the fetch policy is set to `IBMAppLaunch.RefreshPolicy.REFRESH_ON_EXPIRY` or `IBMAppLaunch.RefreshPolicy.BACKGROUND_REFRESH`
 
 
 - `fetchPolicy` : This parameter decides on how frequently the actions should be fetched from the server. The values can be one of the following:
 
- 	-`RefreshPolicy.REFRESH_ON_EVERY_START`
+ 	-`IBMAppLaunch.RefreshPolicy.REFRESH_ON_EVERY_START`
   
-  	-`RefreshPolicy.REFRESH_ON_EXPIRY`
+  	-`IBMAppLaunch.RefreshPolicy.REFRESH_ON_EXPIRY`
  
-  	-`RefreshPolicy.BACKGROUND_REFRESH`
+  	-`IBMAppLaunch.RefreshPolicy.BACKGROUND_REFRESH`
   	
 - `deviceId`: This parameter must be unique. If not specified, default deviceID generation mechanism is used by SDK.
  
@@ -133,15 +116,16 @@ The AppLaunchUser builder is used to provide the following information:
 
 ##### 3. Initialize App Launch SDK
 
-    ```
-    IBMAppLaunch.initialize(IBMAppLaunch.ICRegion.US_SOUTH, "5808c971-3d80-44cf-877a-7865144fa078", "651d6983-0a79-4ebf-8ef8-307be4fef633", config, user).then(
+   ```
+      
+      IBMAppLaunch.initialize(IBMAppLaunch.ICRegion.US_SOUTH, "5808c971-3d80-44cf-877a-7865144fa078", "651d6983-0a79-4ebf-8ef8-307be4fef633", config, user).then(
      function(success) {
 
         }, function(failure) {
 
         });
     
-    ```
+   ```
   	{: codeblock}
 
 Where `region` parameter specifies the location where the app is hosted. You can use any of the following values:
@@ -165,17 +149,13 @@ The `appGUID` is the app launch app GUID value, while `clientSecret` is the appL
 * Use the ```IBMAppLaunch.getPropertyofFeature("_2eciv47r9","_br4kiz40c")``` to get the value of the particular property in a feature.
 
 
- **Note** :The above two APIs throws `AppLaunchException` exception if `isFeatureEnabled` or `getPropertyofFeature` is invoked before `init` API.  
+ **Note** :The above two APIs throws `AppLaunchException` exception if `IBMAppLaunch.isFeatureEnabled` or `IBMAppLaunch.getPropertyofFeature` is invoked before `init` API.  
 
 ### Metrics
 
 To send metrics to the server use the ```IBMAppLaunch.sendMetrics(["_e3dwkpzqc"]);``` API. This API call sends the metrics information to the server.
 
-```
- AppLaunch.getInstance().sendMetrics(ArrayList<String> metrics);
-```
-
- **Note** : The above API throws `AppLaunchException` error if `sendMetrics` is invoked before `init` API.
+**Note** : The above API throws `AppLaunchException` error if `IBMAppLaunch.sendMetrics` is invoked before `init` API.
  
  
 ### InApp Messages
@@ -191,19 +171,21 @@ To display InApp messages invoke the following api
 
 This method unregisters the user from AppLaunch Service and clears the cache
 
-    ```
-    IBMAppLaunch.destroy().then(
+```
 
-    function(success){
+       IBMAppLaunch.destroy().then(
+
+       function(success){
 
        console.log("destroy succes")
 
-    }, function(failure) {
+       }, function(failure) {
 
        console.log("destroy fail")
 
-    });
-    ```
+       });
+
+```
 
 ### Samples and Videos
 
