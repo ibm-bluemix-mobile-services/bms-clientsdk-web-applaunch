@@ -59,9 +59,9 @@ This section describes how to install and use the App Launch SDK for JavaScript 
 
 For installing the Javascript SDK in your web applications follow the steps -
 
-- Download the icapplaunch.js and icapplaunch-inapp.css from [here](https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-web-applaunch)
+- Download the `icapplaunch.js` and `icapplaunch-inapp.css` from [here](https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-web-applaunch)
 
-- Add the icapplaunch.js and icapplaunch-inapp.css to your web application
+- Add the `icapplaunch.js` and `icapplaunch-inapp.css` to your web application
 
 - Include the IBM Cloud AppLaunch CSS File in your web application
 
