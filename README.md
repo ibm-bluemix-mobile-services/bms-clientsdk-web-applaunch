@@ -21,7 +21,6 @@ Ensure that you go through [IBM Cloud App Launch service documentation](https://
      - [Creating a feature](#creating-a-feature)
      - [Creating an audience](#creating-an-audience)
      - [Creating an engagement](#creating-an-engagement)
-- [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Enabling Web applications to use IBM App Launch](#enabling-android-applications-to-use-ibm-app-launch)
     - [Import the App launch SDK in your code](#import-the-app-launch-sdk-in-your-code)
@@ -47,10 +46,6 @@ Ensure that you go through [IBM Cloud App Launch service documentation](https://
 ### Creating an engagement
 ![Create engagement](https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-android-applaunch/blob/development/Images/create_engagement.gif)
 
-## Prerequisites
-
- * Safari, Chrome or Firefox web browser
-
 ## Installation
 
 This section describes how to install and use the App Launch SDK for JavaScript client and to further develop your Web applications.
@@ -58,8 +53,6 @@ This section describes how to install and use the App Launch SDK for JavaScript 
 For installing the Javascript SDK in your web applications follow the steps -
 
 - Download the `icapplaunch.js` and `icapplaunch-inapp.css` from [here](https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-web-applaunch)
-
-- Add the `icapplaunch.js` and `icapplaunch-inapp.css` to your web application
 
 - Include the IBM Cloud AppLaunch CSS File in your web application
 
@@ -102,7 +95,7 @@ The AppLaunchConfig builder is used to customize the following:
 
 ##### 2. Build User Object
 
-``'
+```
 var user = new IBMAppLaunch.AppLaunchUserBuilder().userID("vittal").attributes("email","vittalpai@xyz.com").build();
 ```
 
@@ -114,15 +107,15 @@ The AppLaunchUser builder is used to provide the following information:
 
 ##### 3. Initialize App Launch SDK
 
-   ```
-   IBMAppLaunch.initialize(IBMAppLaunch.ICRegion.US_SOUTH, "appGUID", "clientSecret", config, user).then(
-      function(success) {
+```
+IBMAppLaunch.initialize(IBMAppLaunch.ICRegion.US_SOUTH, "appGUID", "clientSecret", config, user).then(
+	function(success) {
+	  // Intialization Success
+	}, function(failure) {
+	  // Intialization Failure
+	});
+```
 
-        }, function(failure) {
-
-        });
-    
-   ```
 
 Where `region` parameter specifies the location where the app is hosted. You can use any of the following values:
 
@@ -145,13 +138,12 @@ The `appGUID` is the app launch app GUID value, while `clientSecret` is the appL
 To send metrics to the server use the ```IBMAppLaunch.sendMetrics(["metric-code"]);``` API. This API call sends the metrics information to the server.
  
 ### InApp Messages
-To display InApp messages invoke the following api
+
+To display InApp messages invoke the following API
 
 ```
 IBMAppLaunch.displayInAppMessages();
 ```
-
-**Note** : Here the context is the Activities context.
 
 ### Destroy
 
