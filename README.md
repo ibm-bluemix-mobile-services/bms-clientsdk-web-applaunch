@@ -1,11 +1,19 @@
-IBM Cloud Mobile Service - AppLaunch Web Client SDK
+IBM Cloud Mobile Service - AppLaunch Web Javascript Client SDK
 ==========================================
+
+[![Build Status](https://travis-ci.org/ibm-bluemix-mobile-services/bms-clientsdk-web-applaunch.svg?branch=master)](https://travis-ci.org/ibm-bluemix-mobile-services/bms-clientsdk-web-applaunch)
 
 This Web SDK for App Launch on IBM Cloud services, provides a library for developers to build Web applications.
 
 >App Launch on IBM Cloud services enables the developers to build engaging apps by controlling reach and roll out of App features while measuring the defined metrics.
 
 Ensure that you go through [IBM Cloud App Launch service documentation](https://console.bluemix.net/docs/services/app-launch/index.html) before you start.
+
+## Build Status
+
+| Master | Development |
+|:------:|:-----------:|
+|  [![Build Status](https://travis-ci.org/ibm-bluemix-mobile-services/bms-clientsdk-web-applaunch.svg?branch=master)](https://travis-ci.org/ibm-bluemix-mobile-services/bms-clientsdk-web-applaunch)      |    [![Build Status](https://travis-ci.org/ibm-bluemix-mobile-services/bms-clientsdk-web-applaunch.svg?branch=development)](https://travis-ci.org/ibm-bluemix-mobile-services/bms-clientsdk-web-applaunch)         |
 
 ## Contents
 - [Setup App Launch Service](#setup-app-launch-service)
@@ -42,7 +50,6 @@ Ensure that you go through [IBM Cloud App Launch service documentation](https://
 ## Prerequisites
 
  * Safari, Chrome or Firefox web browser
- * [Sample App](https://developer.android.com/studio/index.html)
 
 ## Installation
 
@@ -70,7 +77,7 @@ For installing the Javascript SDK in your web applications follow the steps -
 ##### 1. Build Configuration Object
 
 ```
-    var config  = new IBMAppLaunch.AppLaunchConfigBuilder().fetchPolicy(IBMAppLaunch.RefreshPolicy.REFRESH_ON_EVERY_START).cacheExpiration(30).eventFlushInterval(30).deviceID("deviceIdUUid").build();
+var config  = new IBMAppLaunch.AppLaunchConfigBuilder().fetchPolicy(IBMAppLaunch.RefreshPolicy.REFRESH_ON_EVERY_START).cacheExpiration(30).eventFlushInterval(30).deviceID("deviceUUid").build();
 ```
 The AppLaunchConfig builder is used to customize the following:
 
@@ -95,8 +102,8 @@ The AppLaunchConfig builder is used to customize the following:
 
 ##### 2. Build User Object
 
-```
-    var user = new IBMAppLaunch.AppLaunchUserBuilder().userID("vittal").attributes("ds","sd").attributes("taasdsd","sad").build();
+``'
+var user = new IBMAppLaunch.AppLaunchUserBuilder().userID("vittal").attributes("email","vittalpai@xyz.com").build();
 ```
 
 The AppLaunchUser builder is used to provide the following information:
@@ -108,52 +115,40 @@ The AppLaunchUser builder is used to provide the following information:
 ##### 3. Initialize App Launch SDK
 
    ```
-      
-      IBMAppLaunch.initialize(IBMAppLaunch.ICRegion.US_SOUTH, "5808c971-3d80-44cf-877a-7865144fa078", "651d6983-0a79-4ebf-8ef8-307be4fef633", config, user).then(
-     function(success) {
+   IBMAppLaunch.initialize(IBMAppLaunch.ICRegion.US_SOUTH, "appGUID", "clientSecret", config, user).then(
+      function(success) {
 
         }, function(failure) {
 
         });
     
    ```
-  	{: codeblock}
 
 Where `region` parameter specifies the location where the app is hosted. You can use any of the following values:
 
-- `ICRegion.US_SOUTH`
-- `ICRegion.UNITED_KINGDOM`
-- `ICRegion.SYDNEY`
-- `ICRegion.US_SOUTH_STAGING`
-- `ICRegion.UNITED_KINGDOM_STAGING`
+- `IBMAppLaunch.ICRegion.US_SOUTH`
+- `IBMAppLaunch.ICRegion.UNITED_KINGDOM`
+- `IBMAppLaunch.ICRegion.SYDNEY`
+- `IBMAppLaunch.ICRegion.US_SOUTH_STAGING`
+- `IBMAppLaunch.ICRegion.UNITED_KINGDOM_STAGING`
 
 The `appGUID` is the app launch app GUID value, while `clientSecret` is the appLaunch client secret value which can be obtained from the service console.
-     
-`AppLaunchListener` is the call back listener which will be used to notify in case of success and failure events. Pass the instance of the class implementing the AppLaunchListener interface.
 
 ### Feature toggle
 
+* Use the ```IBMAppLaunch.isFeatureEnabled("feature-code");``` to check if the feature is enabled for the app.
 
-
-* Use the ```IBMAppLaunch.isFeatureEnabled("_2eciv47r9");``` to check if the feature is enabled for the app.
-
-* Use the ```IBMAppLaunch.getPropertyofFeature("_2eciv47r9","_br4kiz40c")``` to get the value of the particular property in a feature.
-
-
- **Note** :The above two APIs throws `AppLaunchException` exception if `IBMAppLaunch.isFeatureEnabled` or `IBMAppLaunch.getPropertyofFeature` is invoked before `init` API.  
+* Use the ```IBMAppLaunch.getPropertyofFeature("feature-code","property-code")``` to get the value of the particular property in a feature.
 
 ### Metrics
 
-To send metrics to the server use the ```IBMAppLaunch.sendMetrics(["_e3dwkpzqc"]);``` API. This API call sends the metrics information to the server.
-
-**Note** : The above API throws `AppLaunchException` error if `IBMAppLaunch.sendMetrics` is invoked before `init` API.
- 
+To send metrics to the server use the ```IBMAppLaunch.sendMetrics(["metric-code"]);``` API. This API call sends the metrics information to the server.
  
 ### InApp Messages
 To display InApp messages invoke the following api
 
 ```
- IBMAppLaunch.displayInAppMessages();
+IBMAppLaunch.displayInAppMessages();
 ```
 
 **Note** : Here the context is the Activities context.
@@ -163,24 +158,17 @@ To display InApp messages invoke the following api
 This method unregisters the user from AppLaunch Service and clears the cache
 
 ```
-
-       IBMAppLaunch.destroy().then(
-
-       function(success){
-
-       console.log("destroy succes")
-
-       }, function(failure) {
-
-       console.log("destroy fail")
-
-       });
-
+IBMAppLaunch.destroy().then(
+   function(success){
+       //Success
+   }, function(failure) {
+       //Failure
+   });
 ```
 
 ### Samples and Videos
 
-* For samples, visit - [Github Sample](https://github.com/ibm-cloud-applaunch/sample-android-poll)
+* For samples, visit - [Github Sample](https://github.com/ibm-cloud-applaunch/vroom)
 
 
 ### Learn More
