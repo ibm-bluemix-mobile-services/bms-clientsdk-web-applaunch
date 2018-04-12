@@ -850,6 +850,7 @@ window.IBMAppLaunch = (function () {
     };
 }());
 
+/*eslint-disable */
 function isArray(arr) {
     return Object.prototype.toString.call(arr) == '[object Array]';
 }
@@ -1163,3 +1164,4 @@ D.Deferred = function () {
     return new Deferred();
 }
 var ICJQ = D;
+/*eslint-enable */
