@@ -456,13 +456,13 @@ window.IBMAppLaunch = (function () {
             var leftBtn = d.createElement('a');
             rightBtn.innerHTML = rightBtnJson.name;
             leftBtn.innerHTML = leftBtnJson.name;
-            if (leftBtnJson.metrics !== null) {
+            if (leftBtnJson.metrics !== null && leftBtnJson.metrics !== undefined) {
                 var leftBtnMetrics = leftBtnJson.metrics;
                 for (var i = 0; i < leftBtnMetrics.length; i += 1) {
                     leftBtnMetricsCodes.push(leftBtnMetrics.code)
                 }
             }
-            if (rightBtnJson.metrics !== null) {
+            if (rightBtnJson.metrics !== null && rightBtnJson.metrics !== undefined) {
                 var rightBtnMetrics = rightBtnJson.metrics;
                 for (var i = 0; i < rightBtnMetrics.length; i += 1) {
                     rightBtnMetricsCodes.push(rightBtnMetrics.code)
@@ -851,7 +851,7 @@ window.IBMAppLaunch = (function () {
 }());
 
 function isArray(arr) {
-    return Object.prototype.toString.call(arr) === '[object Array]';
+    return Object.prototype.toString.call(arr) == '[object Array]';
 }
 
 function foreach(arr, handler) {
@@ -883,7 +883,7 @@ function D(fn) {
                         var arr = arguments[i];
                         for (var j = 0; j < arr.length; j += 1) {
                             // immediately call the function if the deferred has been resolved
-                            if (status === 'resolved') {
+                            if (status == 'resolved') {
                                 arr[j].apply(this, resultArgs);
                             }
 
@@ -891,7 +891,7 @@ function D(fn) {
                         }
                     } else {
                         // immediately call the function if the deferred has been resolved
-                        if (status === 'resolved') {
+                        if (status == 'resolved') {
                             arguments[i].apply(this, resultArgs);
                         }
 
@@ -913,7 +913,7 @@ function D(fn) {
                         var arr = arguments[i];
                         for (var j = 0; j < arr.length; j += 1) {
                             // immediately call the function if the deferred has been resolved
-                            if (status === 'rejected') {
+                            if (status == 'rejected') {
                                 arr[j].apply(this, resultArgs);
                             }
 
@@ -921,7 +921,7 @@ function D(fn) {
                         }
                     } else {
                         // immediately call the function if the deferred has been resolved
-                        if (status === 'rejected') {
+                        if (status == 'rejected') {
                             arguments[i].apply(this, resultArgs);
                         }
 
@@ -947,13 +947,13 @@ function D(fn) {
                         var arr = arguments[i];
                         for (var j = 0; j < arr.length; j += 1) {
                             // immediately call the function if the deferred has been resolved
-                            if (status === 'pending') {
+                            if (status == 'pending') {
                                 progressFuncs.push(arr[j]);
                             }
                         }
                     } else {
                         // immediately call the function if the deferred has been resolved
-                        if (status === 'pending') {
+                        if (status == 'pending') {
                             progressFuncs.push(arguments[i]);
                         }
                     }
@@ -980,7 +980,7 @@ function D(fn) {
             },
 
             promise: function (obj) {
-                if (obj === null) {
+                if (obj == null) {
                     return promise;
                 } else {
                     for (var i in promise) {
@@ -999,22 +999,22 @@ function D(fn) {
             },
 
             isRejected: function () {
-                return status === 'rejected';
+                return status == 'rejected';
             },
 
             isResolved: function () {
-                return status === 'resolved';
+                return status == 'resolved';
             },
 
             pipe: function (done, fail, progress) {
                 return D(function (def) {
                     foreach(done, function (func) {
                         // filter function
-                        if (typeof func === 'function') {
+                        if (typeof func == 'function') {
                             deferred.done(function () {
                                 var returnval = func.apply(this, arguments);
                                 // if a new deferred/promise is returned, its state is passed to the current deferred/promise
-                                if (returnval && typeof returnval === 'function') {
+                                if (returnval && typeof returnval == 'function') {
                                     returnval.promise().then(def.resolve, def.reject, def.notify);
                                 } else { // if new return val is passed, it is passed to the piped done
                                     def.resolve(returnval);
@@ -1026,11 +1026,11 @@ function D(fn) {
                     });
 
                     foreach(fail, function (func) {
-                        if (typeof func === 'function') {
+                        if (typeof func == 'function') {
                             deferred.fail(function () {
                                 var returnval = func.apply(this, arguments);
 
-                                if (returnval && typeof returnval === 'function') {
+                                if (returnval && typeof returnval == 'function') {
                                     returnval.promise().then(def.resolve, def.reject, def.notify);
                                 } else {
                                     def.reject(returnval);
@@ -1046,7 +1046,7 @@ function D(fn) {
 
         deferred = {
             resolveWith: function (context) {
-                if (status === 'pending') {
+                if (status == 'pending') {
                     status = 'resolved';
                     var args = resultArgs = (arguments.length > 1) ? arguments[1] : [];
                     for (var i = 0; i < doneFuncs.length; i += 1) {
@@ -1057,7 +1057,7 @@ function D(fn) {
             },
 
             rejectWith: function (context) {
-                if (status === 'pending') {
+                if (status == 'pending') {
                     status = 'rejected';
                     var args = resultArgs = (arguments.length > 1) ? arguments[1] : [];
                     for (var i = 0; i < failFuncs.length; i += 1) {
@@ -1068,7 +1068,7 @@ function D(fn) {
             },
 
             notifyWith: function (context) {
-                if (status === 'pending') {
+                if (status == 'pending') {
                     var args = resultArgs = (arguments.length > 1) ? arguments[1] : [];
                     for (var i = 0; i < progressFuncs.length; i += 1) {
                         progressFuncs[i].apply(context, args);
@@ -1102,7 +1102,7 @@ function D(fn) {
 D.when = function () {
         if (arguments.length < 2) {
             var obj = arguments.length ? arguments[0] : undefined;
-            if (obj && (typeof obj.isResolved === 'function' && typeof obj.isRejected === 'function')) {
+            if (obj && (typeof obj.isResolved == 'function' && typeof obj.isRejected == 'function')) {
                 return obj.promise();
             } else {
                 return D().resolve(obj).promise();
@@ -1121,7 +1121,7 @@ D.when = function () {
                         if (args[j].done) {
                             args[j].done(function () {
                                     rp[j] = (arguments.length < 2) ? arguments[0] : arguments;
-                                    if ((done += 1) === size) {
+                                    if ((done += 1) == size) {
                                         df.resolve.apply(df, rp);
                                     }
                                 })
@@ -1134,7 +1134,7 @@ D.when = function () {
 
                             args[j].done(function () {
                                     rp[j] = (arguments.length < 2) ? arguments[0] : arguments;
-                                    if ((done += 1) === size) {
+                                    if ((done += 1) == size) {
                                         df.resolve.apply(df, rp);
                                     }
                                 })
